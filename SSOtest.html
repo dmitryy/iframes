@@ -2,10 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <script type="text/javascript">
+        function listener(event) {
+            // here we may check sender domain if needed
+            //if (event.origin !== "http://outdomain.com") return; 
+
+            document.getElementById("test").innerHTML = event.origin + " sent: " + event.data;
+        }
+
+        if (window.addEventListener) {
+            window.addEventListener("message", listener, false);
+        } else {
+            window.attachEvent("onmessage", listener);
+        }
+    </script>
 </head>
 <body>
   This is page on the Internet<br/>
-  Trying to load page from localhost and get token...
-  <iframe src="http://localhost/ssotest.html"></iframe>
+  Trying to load page from localhost and get token...<br/>
+  <iframe src="http://localhost/ssotest.html"></iframe><br />
+  <div id="test"></div>
 </body>
 </html>
